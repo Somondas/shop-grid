@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "shop-grid",
+    "name": "ShopGrid",
     "slug": "shop-grid",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/logo-symbol.png",
+    "scheme": "shop-grid",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
