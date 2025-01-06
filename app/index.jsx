@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Category from "./components/Category";
 export default function Index() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -28,7 +29,12 @@ export default function Index() {
           <TouchableOpacity style={styles.searchBtn}>Search</TouchableOpacity>
         </View>
         {/* Categories */}
-        <View></View>
+        <View style={styles.categoryContainer}>
+          <Category />
+          <Category />
+          <Category />
+          <Category />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -63,5 +69,11 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  categoryContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    padding: 10,
   },
 });
