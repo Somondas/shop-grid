@@ -1,15 +1,22 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
-const Category = ({ title, image }) => {
+const Category = ({ title, img }) => {
+  console.log(img);
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../assets/images/fruit.png")}
-        style={styles.img}
-      />
-      <Text style={{ paddingTop: 5, color: "#fff", fontWeight: "bold" }}>
-        Fruits
+      <TouchableOpacity>
+        <Image source={img} style={styles.img} />
+      </TouchableOpacity>
+      <Text
+        style={{
+          paddingTop: 5,
+          fontFamily: "Poppins-Medium",
+          color: "#fff",
+        }}
+      >
+        {title}
       </Text>
     </View>
   );

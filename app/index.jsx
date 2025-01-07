@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Category from "./components/Category";
+import COLORS from "./constants/COLOR";
 export default function Index() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -30,19 +31,29 @@ export default function Index() {
         </View>
         {/* Categories */}
         <View style={styles.categoryContainer}>
-          <Category />
-          <Category />
-          <Category />
-          <Category />
+          <Category
+            img={require("../assets/images/fruit.png")}
+            title="Fruits"
+          />
+          <Category
+            img={require("../assets/images/vegetable.png")}
+            title="Vegetables"
+          />
+          <Category img={require("../assets/images/diary.png")} title="Dairy" />
+          <Category
+            img={require("../assets/images/see-all.png")}
+            title="See All"
+          />
         </View>
       </View>
     </SafeAreaView>
   );
 }
 
+// >> Styles___________________
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#01b45e",
+    backgroundColor: COLORS.primary,
     fontFamily: "Poppins-Regular",
   },
   imgContainer: {
@@ -53,7 +64,7 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "#fff",
     borderRadius: 20,
-    placeholderTextColor: "#01b45e",
+    placeholderTextColor: COLORS.primary,
     padding: 10,
     margin: 10,
   },
@@ -61,7 +72,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "#fff",
     right: 3,
-    backgroundColor: "#01b45e",
+    backgroundColor: COLORS.primary,
     borderRadius: 20,
     paddingHorizontal: 15,
     paddingVertical: 3,
@@ -76,5 +87,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     padding: 10,
+    paddingBottom: 40,
   },
 });
