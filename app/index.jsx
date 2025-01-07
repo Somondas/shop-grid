@@ -1,5 +1,6 @@
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -9,6 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Category from "./components/Category";
 import COLORS from "./constants/COLOR";
+import OfferCard from "./components/offer-cards";
 export default function Index() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -45,6 +47,54 @@ export default function Index() {
             title="See All"
           />
         </View>
+        {/* Offer Cards */}
+        <View style={styles.offerContainer}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontFamily: "Poppins-Light",
+              fontWeight: "bold",
+              margin: 10,
+              color: COLORS.secondary,
+            }}
+          >
+            Exclusive Offers for You
+          </Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 10 }}
+          >
+            <OfferCard
+              text={"Fresh Deals, Fresh Groceries!"}
+              description={
+                "Get Up to 50% OFF on Groceries at Vegemart! Save Big While You Shop!"
+              }
+              image={
+                "https://images.unsplash.com/photo-1498579397066-22750a3cb424?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+            />
+            <OfferCard
+              text={"Fresh Deals, Fresh Groceries!"}
+              description={
+                "Get Up to 50% OFF on Groceries at Vegemart! Save Big While You Shop!"
+              }
+              image={
+                "https://plus.unsplash.com/premium_photo-1664305032567-2c460e29dec1?q=80&w=1368&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+            />
+            <OfferCard
+              text={"Fresh Deals, Fresh Groceries!"}
+              description={
+                "Get Up to 50% OFF on Groceries at Vegemart! Save Big While You Shop!"
+              }
+              image={
+                "https://plus.unsplash.com/premium_photo-1663011122314-ed94208842d8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+            />
+            {/* Add more cards as needed */}
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -62,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textInput: {
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.white,
     borderRadius: 20,
     placeholderTextColor: COLORS.primary,
     padding: 10,
@@ -70,7 +120,7 @@ const styles = StyleSheet.create({
   },
   searchBtn: {
     position: "absolute",
-    color: "#fff",
+    color: COLORS.white,
     right: 3,
     backgroundColor: COLORS.primary,
     borderRadius: 20,
@@ -87,6 +137,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     padding: 10,
+    paddingBottom: 30,
+  },
+  offerContainer: {
+    padding: 6,
+    backgroundColor: COLORS.white,
     paddingBottom: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });
