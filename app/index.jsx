@@ -11,8 +11,17 @@ import Category from "./components/Category";
 import COLORS from "./constants/COLOR";
 import OfferCard from "./components/offer-cards";
 import ItemCard from "./components/ItemCard";
+import { useEffect } from "react";
+import { Redirect, useRouter } from "expo-router";
 
 export default function Index() {
+  const isLoggin = null;
+  const router = useRouter();
+  useEffect(() => {
+    if (!isLoggin) {
+      router.replace("/(auth)/sign-up"); // Redirect to the auth screen
+    }
+  }, [isLoggin]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
