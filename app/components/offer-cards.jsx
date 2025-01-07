@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     marginHorizontal: 10,
     padding: 10,
-    width: 340,
+    width: 320,
     height: "auto",
     borderRadius: 15,
     overflow: "hidden",
