@@ -43,6 +43,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#01b45e",
+    fontFamily: "Poppins-Regular",
   },
   imgContainer: {
     flex: 1,
@@ -63,9 +64,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#01b45e",
     borderRadius: 20,
     paddingHorizontal: 15,
-    paddingVertical: 7,
+    paddingVertical: 3,
     top: 2,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
