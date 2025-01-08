@@ -7,28 +7,24 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Category from "./components/Category";
-import COLORS from "./constants/COLOR";
-import OfferCard from "./components/offer-cards";
-import ItemCard from "./components/ItemCard";
+import Category from "../components/Category";
+import COLORS from "../constants/COLOR";
+import OfferCard from "../components/offer-cards";
 import { useEffect } from "react";
 import { Redirect, useRouter } from "expo-router";
+import ItemCard from "../components/ItemCard";
 
 export default function Index() {
   const isLoggin = null;
   const router = useRouter();
-  useEffect(() => {
-    if (!isLoggin) {
-      router.replace("/(auth)/sign-up"); // Redirect to the auth screen
-    }
-  }, [isLoggin]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
           <View style={styles.imgContainer}>
             <Image
-              source={require("../assets/images/extra-small-logo.png")}
+              source={require("../../assets/images/extra-small-logo.png")}
               alt="logo"
               style={{ width: 120, height: 40, resizeMode: "contain" }}
             />
@@ -45,19 +41,19 @@ export default function Index() {
           {/* Categories */}
           <View style={styles.categoryContainer}>
             <Category
-              img={require("../assets/images/fruit.png")}
+              img={require("../../assets/images/fruit.png")}
               title="Fruits"
             />
             <Category
-              img={require("../assets/images/vegetable.png")}
+              img={require("../../assets/images/vegetable.png")}
               title="Vegetables"
             />
             <Category
-              img={require("../assets/images/diary.png")}
+              img={require("../../assets/images/diary.png")}
               title="Dairy"
             />
             <Category
-              img={require("../assets/images/see-all.png")}
+              img={require("../../assets/images/see-all.png")}
               title="See All"
             />
           </View>
