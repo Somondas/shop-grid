@@ -1,7 +1,6 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { Stack, Tabs } from "expo-router";
 import { Feather, FontAwesome } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
 import COLORS from "../constants/COLOR";
 
 const RootLayout = () => {
@@ -29,6 +28,16 @@ const RootLayout = () => {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-cart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="orders"
+        options={{
+          title: "Cart",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="package" size={size} color={color} />
           ),
         }}
       />
