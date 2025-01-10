@@ -1,43 +1,48 @@
+import { auth } from "@/firebaseConfig";
+import { Link, useRouter } from "expo-router";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import COLORS from "../constants/COLOR";
 
 const Login = () => {
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  // -> Login function
+  const handleLogin = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
 
+      if (user) {
+        Alert.alert("Success", "Login successful");
+        router.replace("/(tabs)/index");
+      }
+    } catch (error) {}
+    // Implement your login logic here
+    Alert.alert("Error", "Invalid email or password");
+  };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f8f1ed00" }}>
       <View style={styles.container}>
-        {/* <Image
-          style={styles.img}
-          source={require("../../assets/images/shopgrid-white.png")}
-        /> */}
         <View className="ml-5 my-20">
           <Text className="text-3xl  font-Poppins-Bold">Welcome,</Text>
           <Text className="text-xl color-gray-400 font-Poppins-Bold">
             Sign in to continue!
           </Text>
         </View>
+        {/* Form */}
         <View className="px-5 my-8">
           <View className="w-full space-y-4">
-            {/* Full Name Field */}
-            {/* <View>
-              <TextInput
-                value={fullName}
-                onChangeText={setFullName}
-                placeholder="Full Name"
-                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
-              />
-            </View> */}
-
             {/* Email Field */}
             <View>
               <TextInput
@@ -45,7 +50,7 @@ const Login = () => {
                 onChangeText={setEmail}
                 placeholder="Enter your email"
                 keyboardType="email-address"
-                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
+                className="text-lg my-2 border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
               />
             </View>
 
@@ -56,7 +61,7 @@ const Login = () => {
                 onChangeText={setPassword}
                 placeholder="Enter your password"
                 secureTextEntry
-                className="text-lg  placeholder:color-slate-400 border border-gray-300 rounded-lg px-4 py-2 bg-white r"
+                className="text-lg  my-2 placeholder:color-slate-400 border border-gray-300 rounded-lg px-4 py-2 bg-white r"
               />
             </View>
 
@@ -64,7 +69,9 @@ const Login = () => {
             <TouchableOpacity
               style={{
                 backgroundImage: `linear-gradient(90deg, #01b45e, #00d98b)`,
+                backgroundColor: "#01b45e",
               }}
+              onPress={handleLogin}
               className=" py-3 rounded-lg mt-4"
             >
               <Text className="text-center text-white font-bold text-lg">
@@ -73,6 +80,12 @@ const Login = () => {
             </TouchableOpacity>
           </View>
         </View>
+        <Text className="text-center mx-auto mt-28 text-slate-900 font-Poppins-Light">
+          I'm a new user.{" "}
+          <Link style={{ color: COLORS.primary }} href={"/(auth)/sign-up"}>
+            Sign Up
+          </Link>
+        </Text>
       </View>
     </SafeAreaView>
   );

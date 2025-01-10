@@ -12,20 +12,37 @@ import Category from "../components/Category";
 import ItemCard from "../components/ItemCard";
 import OfferCard from "../components/offer-cards";
 import COLORS from "../constants/COLOR";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { auth } from "@/firebaseConfig";
 
 export default function Index() {
+  const [loading, setLoading] = useState(true);
   const isLoggin = null;
   const router = useRouter();
   const rootNavitationState = useRootNavigationState();
   const navigatorReady = rootNavitationState?.key !== undefined;
   useEffect(() => {
-    if (navigatorReady) {
-      if (isLoggin == null) {
-        router.replace("/(auth)/sign-up");
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/(auth)/login");
       }
-    }
-  }, [navigatorReady, isLoggin]);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+  // useEffect(() => {
+  //   if (navigatorReady) {
+  //     if (isLoggin == null) {
+  //       router.replace("/(auth)/sign-up");
+  //     }
+  //   }
+  // }, [navigatorReady, isLoggin]);
+  if (loading) {
+    return null;
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>

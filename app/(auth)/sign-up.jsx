@@ -10,8 +10,9 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { auth } from "../../firebaseConfig";
+import COLORS from "../constants/COLOR";
 
 const SignUp = () => {
   const router = useRouter();
@@ -30,11 +31,13 @@ const SignUp = () => {
         email,
         password
       );
-      await updateProfile(userCredential.user, {
-        displayName: fullName,
-      });
-      Alert.alert("Success", "Account created successfully");
-      router.replace("/(tabs)");
+      if (userCredential.user) {
+        await updateProfile(userCredential.user, {
+          displayName: fullName,
+        });
+        Alert.alert("Success", "Account created successfully");
+        router.replace("/(auth)/login");
+      }
     } catch (error) {
       Alert.alert("Error", error.message);
     }
@@ -42,10 +45,6 @@ const SignUp = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f8f1ed00" }}>
       <View style={styles.container}>
-        {/* <Image
-          style={styles.img}
-          source={require("../../assets/images/shopgrid-white.png")}
-        /> */}
         <View className="ml-5 my-20">
           <Text className="text-3xl  font-Poppins-Bold">Create Account,</Text>
           <Text className="text-xl color-gray-400 font-Poppins-Bold">
@@ -60,7 +59,7 @@ const SignUp = () => {
                 value={fullName}
                 onChangeText={setFullName}
                 placeholder="Full Name"
-                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
+                className="text-lg my-2 border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
               />
             </View>
 
@@ -71,7 +70,7 @@ const SignUp = () => {
                 onChangeText={setEmail}
                 placeholder="Enter your email"
                 keyboardType="email-address"
-                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
+                className="text-lg my-2 border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
               />
             </View>
 
@@ -82,15 +81,15 @@ const SignUp = () => {
                 onChangeText={setPassword}
                 placeholder="Enter your password"
                 secureTextEntry
-                className="text-lg  placeholder:color-slate-400 border border-gray-300 rounded-lg px-4 py-2 bg-white r"
+                className="text-lg my-2  placeholder:color-slate-400 border border-gray-300 rounded-lg px-4 py-2 bg-white r"
               />
             </View>
 
             {/* Login Button */}
             <TouchableOpacity
-              onPress={() => console.log("Login button pressed")}
+              onPress={handleSignUp}
               style={{
-                backgroundImage: `linear-gradient(90deg, #01b45e, #00d98b)`,
+                backgroundColor: "#01b45e",
               }}
               className=" py-3 rounded-lg mt-4"
             >
@@ -101,6 +100,12 @@ const SignUp = () => {
           </View>
         </View>
       </View>
+      <Text className="text-center mx-auto mt-28 text-slate-900 font-Poppins-Light">
+        I'm already a member.{" "}
+        <Link style={{ color: COLORS.primary }} href={"/(auth)/login"}>
+          Sign In
+        </Link>
+      </Text>
     </SafeAreaView>
   );
 };
