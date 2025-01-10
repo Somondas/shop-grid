@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { useRootNavigationState, useRouter } from "expo-router";
 import {
   Image,
   ScrollView,
@@ -17,11 +17,15 @@ import { useEffect } from "react";
 export default function Index() {
   const isLoggin = null;
   const router = useRouter();
+  const rootNavitationState = useRootNavigationState();
+  const navigatorReady = rootNavitationState?.key !== undefined;
   useEffect(() => {
-    if (isLoggin == null) {
-      router.push("/sign-up");
+    if (navigatorReady) {
+      if (isLoggin == null) {
+        router.replace("/(auth)/sign-up");
+      }
     }
-  }, [isLoggin]);
+  }, [navigatorReady, isLoggin]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
