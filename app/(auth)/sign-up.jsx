@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -6,14 +7,38 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useRouter } from "expo-router";
+import { auth } from "../../firebaseConfig";
 
 const SignUp = () => {
-  const [fullName, setFullName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const router = useRouter();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleSignUp = async () => {
+    if (!fullName || !email || !password) {
+      Alert.alert("Error", "Please fill in all fields");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(userCredential.user, {
+        displayName: fullName,
+      });
+      Alert.alert("Success", "Account created successfully");
+      router.replace("/(tabs)");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
+  };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f8f1ed00" }}>
       <View style={styles.container}>
@@ -27,7 +52,7 @@ const SignUp = () => {
             Sign up to get started!
           </Text>
         </View>
-        <View className="px-5">
+        <View className="px-5 my-5">
           <View className="w-full space-y-4">
             {/* Full Name Field */}
             <View>
@@ -35,36 +60,40 @@ const SignUp = () => {
                 value={fullName}
                 onChangeText={setFullName}
                 placeholder="Full Name"
-                className="border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
+                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
               />
             </View>
 
             {/* Email Field */}
             <View>
-              <Text className="text-gray-500 mb-1">Email ID</Text>
               <TextInput
                 value={email}
                 onChangeText={setEmail}
                 placeholder="Enter your email"
                 keyboardType="email-address"
-                className="border border-gray-300 rounded-lg px-4 py-2 bg-white text-gray-800"
+                className="text-lg border placeholder:color-slate-400 border-gray-300 rounded-lg px-4 py-2 bg-white "
               />
             </View>
 
             {/* Password Field */}
             <View>
-              <Text className="text-gray-500 mb-1">Password</Text>
               <TextInput
                 value={password}
                 onChangeText={setPassword}
                 placeholder="Enter your password"
                 secureTextEntry
-                className="border border-gray-300 rounded-lg px-4 py-2 bg-white text-gray-800"
+                className="text-lg  placeholder:color-slate-400 border border-gray-300 rounded-lg px-4 py-2 bg-white r"
               />
             </View>
 
             {/* Login Button */}
-            <TouchableOpacity className="bg-gradient-to-r from-pink-500 to-orange-400 py-3 rounded-lg mt-4">
+            <TouchableOpacity
+              onPress={() => console.log("Login button pressed")}
+              style={{
+                backgroundImage: `linear-gradient(90deg, #01b45e, #00d98b)`,
+              }}
+              className=" py-3 rounded-lg mt-4"
+            >
               <Text className="text-center text-white font-bold text-lg">
                 Login
               </Text>
