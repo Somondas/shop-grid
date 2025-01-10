@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import {
   Image,
   ScrollView,
@@ -8,16 +9,19 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Category from "../components/Category";
-import COLORS from "../constants/COLOR";
-import OfferCard from "../components/offer-cards";
-import { useEffect } from "react";
-import { Redirect, useRouter } from "expo-router";
 import ItemCard from "../components/ItemCard";
+import OfferCard from "../components/offer-cards";
+import COLORS from "../constants/COLOR";
+import { useEffect } from "react";
 
 export default function Index() {
   const isLoggin = null;
   const router = useRouter();
-
+  useEffect(() => {
+    if (isLoggin == null) {
+      router.push("/sign-up");
+    }
+  }, [isLoggin]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContent}>

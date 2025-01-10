@@ -4,13 +4,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignUp = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#f8f1ed00" }}>
       <View style={styles.container}>
-        <Image
+        {/* <Image
           style={styles.img}
           source={require("../../assets/images/shopgrid-white.png")}
-        />
-        <Text>SignUp</Text>
+        /> */}
+        <View className="ml-5 mt-20">
+          <Text className="text-3xl  font-Poppins-Bold">Create Account,</Text>
+          <Text className="text-xl color-gray-400 font-Poppins-Bold">
+            Sign up to get started!
+          </Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -20,9 +25,7 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#f8f1ed00",
   },
   img: {
     width: 300,
