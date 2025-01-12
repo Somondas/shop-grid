@@ -27,9 +27,10 @@ const Login = () => {
         Alert.alert("Success", "Login successful");
         router.replace("/(tabs)/");
       }
-    } catch (error) {}
+    } catch (error) {
+      Alert.alert("Error", "Invalid email or password");
+    }
     // Implement your login logic here
-    Alert.alert("Error", "Invalid email or password");
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f8f1ed00" }}>

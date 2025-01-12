@@ -13,8 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/shopgrid-white.png",
+        "backgroundColor": "#f8f1ed"
       },
       "package": "com.somondas.shopgrid"
     },
