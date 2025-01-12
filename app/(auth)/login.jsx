@@ -25,7 +25,7 @@ const Login = () => {
 
       if (user) {
         Alert.alert("Success", "Login successful");
-        router.replace("/(tabs)/index");
+        router.replace("/(tabs)/");
       }
     } catch (error) {}
     // Implement your login logic here
